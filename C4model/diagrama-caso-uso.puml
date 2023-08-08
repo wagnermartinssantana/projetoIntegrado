@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+
+Person(user, "Cliente", "Pessoas que precisam de serviços de beleza")
+Person(admin, "Administrador", "Pessoas que administram o sistema via componentes v1.1", $tags="v1.1")
+
+rectangle Sistema {
+    usecase "Realizar Agendamento" as agendamento
+    usecase "Gerenciar Agenda" as gerenciar
+    usecase "Cadastrar Cliente" as cadastrar
+    usecase "Controlar Finanças" as financas
+    usecase "Emitir Relatórios" as relatorios
+
+    user --> agendamento : Seleciona serviço
+    user --> agendamento : Escolhe horário
+    user --> agendamento : Confirma agendamento
+    agendamento --> user : Exibe horários
+
+    admin --> gerenciar : Acessa agenda
+    admin --> gerenciar : Adicionar, modificar ou cancelar agendamentos
+    gerenciar --> admin : Exibe agendamentos
+
+    admin --> cadastrar : Acessa seção de cadastro
+    admin --> cadastrar : Insere dados e confirma cadastro
+    cadastrar --> admin : Exibe formulário
+
+    admin --> financas : Acessa seção financeira
+    admin --> financas : Adiciona registros
+    financas --> admin : Exibe transações
+
+    admin --> relatorios : Seleciona opção
+    admin --> relatorios : Escolhe e gera relatório
+    relatorios --> admin : Exibe opções
+}
+
+@enduml
