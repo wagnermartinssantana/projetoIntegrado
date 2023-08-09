@@ -1,0 +1,75 @@
+@startuml Diagrama de Classes
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+class Cliente {
+    - id: int
+    - nome: String
+    - telefone: String
+    - email: String
+    - rua: String
+    - numero: int
+    - complemento: String
+    - bairro: String
+    - cidade: String
+    - estado: String
+    - pais: String
+    + agendarServico()
+    + cancelarAgendamento()
+    + visualizarHistorico()
+}
+
+class Funcionario {
+    - id: int
+    - nome: String
+    - telefone: String
+    - email: String
+    - rua: String
+    - numero: int
+    - complemento: String
+    - bairro: String
+    - cidade: String
+    - estado: String
+    - pais: String
+    - cargo: String
+    - salario: double
+    + atenderCliente()
+    + registrarServico()
+    + gerarRelatorio()
+}
+
+class Produto {
+    - id: int
+    - nome: String
+    - descricao: String
+    - preco: double
+    + adicionar()
+    + remover()
+}
+
+class Agendamento {
+    - id: int
+    - cliente: Cliente
+    - funcionario: Funcionario
+    - produto: Produto
+    - data: Date
+    - horario: String
+    + confirmar()
+    + reagendar()
+    + cancelar()
+}
+
+class TransacaoFinanceira {
+    - id: int
+    - agendamento: Agendamento
+    - tipo: String
+    - valor: double
+    - data: Date
+    + registrar()
+}
+
+Cliente "1" -- "0..*" Agendamento
+Funcionario "1" -- "0..*" Agendamento
+Produto "1" -- "0..*" Agendamento
+Agendamento"1" -- "0..*" TransacaoFinanceira
+
+@enduml
