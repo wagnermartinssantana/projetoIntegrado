@@ -13,6 +13,9 @@ class Cliente {
     - cidade: String
     - estado: String
     - pais: String
+    + adicionar()
+    + remover()
+    + alterar()
     + agendarServico()
     + cancelarAgendamento()
     + visualizarHistorico()
@@ -32,6 +35,9 @@ class Funcionario {
     - pais: String
     - cargo: String
     - salario: double
+    + adicionar()
+    + remover()
+    + alterar()
     + atenderCliente()
     + registrarServico()
     + gerarRelatorio()
@@ -42,15 +48,17 @@ class Produto {
     - nome: String
     - descricao: String
     - preco: double
+    - quantidade: int
     + adicionar()
     + remover()
+    + alterar()
 }
 
 class Agendamento {
     - id: int
     - cliente: Cliente
-    - funcionario: Funcionario
-    - produto: Produto
+    - funcionarios: List<Funcionario>
+    - servico: List<Servicos>
     - data: Date
     - horario: String
     + confirmar()
@@ -60,16 +68,79 @@ class Agendamento {
 
 class TransacaoFinanceira {
     - id: int
-    - agendamento: Agendamento
     - tipo: String
     - valor: double
     - data: Date
     + registrar()
 }
 
-Cliente "1" -- "0..*" Agendamento
-Funcionario "1" -- "0..*" Agendamento
-Produto "1" -- "0..*" Agendamento
-Agendamento"1" -- "0..*" TransacaoFinanceira
+class Avaliacao {
+    - id: int
+    - cliente: Cliente
+    - servico: Servico
+    - estrelas: int
+    - comentario: String
+    - dataAtendimento: Date
+    + registrar()
+}
+
+class Servico {
+    - id: int
+    - nome: String
+    - descricao: String
+    - duracao: int
+    - preco: double
+    + adicionar()
+    + adicionarProduto()
+    + remover()
+    + alterar()
+}
+
+class Relatorio {
+    - id: int
+    - tipo: String
+    - dataGeracao: Date
+    - conteudo: String
+    + gerar()
+    + exportarPDF()
+    + exportarExcel()
+}
+
+class Despesa {
+    - id: int
+    - descricao: String
+    - valor: double
+    - data: Date
+    + registrarDespesa()
+}
+
+class HorarioTrabalho {
+    - id: int
+    - funcionario: Funcionario
+    - diaSemana: String
+    - horarioInicio: Time
+    - horarioFim: Time
+}
+
+class Promocao {
+    - id: int
+    - servico: Servico
+    - descricao: String
+    - desconto: double
+    - dataInicio: Date
+    - dataFim: Date
+}
+
+Cliente "1" -- "1" Agendamento
+Funcionario "N" -- "1" Agendamento
+Servico "1" -- "N" Agendamento
+Servico "1" -- "N" Produto
+Agendamento "1" -- "1" TransacaoFinanceira
+Agendamento "1" -- "1" Avaliacao
+TransacaoFinanceira "N" -- "N" Relatorio
+Avaliacao "N" -- "N" Relatorio
+Despesa "1" -- "1" TransacaoFinanceira
+HorarioTrabalho "N" -- "1" Funcionario
+Promocao "1" -- "1" Servico
 
 @enduml
