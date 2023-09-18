@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "spring.hikari.connection-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.hikari.connection-timeout'"
+  },
+  {
+    "name": "spring.hikari.maximumPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.hikari.maximumPoolSize'"
+  }
+]}
