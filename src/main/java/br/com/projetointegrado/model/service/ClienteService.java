@@ -41,7 +41,6 @@ public class ClienteService {
                 cliente.setNome(novoCliente.getNome());
                 cliente.setTelefone(novoCliente.getTelefone());
                 cliente.setEmail(novoCliente.getEmail());
-                // Salve o cliente atualizado
                 return clienteRepository.save(cliente);
             })
             .orElse(null);

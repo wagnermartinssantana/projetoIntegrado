@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cliente")
-@Tag(name = "Clientes")
+@Tag(name = "Clientes", description = "Endpoints da API do Projeto Integrado para os Clientes")
 public class ClienteController {
 	
 	@Autowired
