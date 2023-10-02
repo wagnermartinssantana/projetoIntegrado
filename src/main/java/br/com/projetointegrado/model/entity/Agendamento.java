@@ -1,6 +1,10 @@
 package br.com.projetointegrado.model.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +13,7 @@ public class Agendamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = Access.READ_ONLY)
     private Long id;
 
     @ManyToOne

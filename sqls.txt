@@ -1,0 +1,16 @@
+-- Inserir Serviços
+
+INSERT INTO servico (nome, descricao, duracao, preco) 
+VALUES ('Corte de Cabelo', 'Corte de cabelo profissional', 30, 50.00);
+
+INSERT INTO servico (nome, descricao, duracao, preco) 
+VALUES ('Coloração', 'Coloração de cabelo', 60, 80.00);
+
+INSERT INTO servico (nome, descricao, duracao, preco) 
+VALUES ('Manicure', 'Manicure e pedicure', 45, 40.00);
+
+INSERT INTO servico (nome, descricao, duracao, preco) 
+VALUES ('Maquiagem', 'Maquiagem profissional', 60, 70.00);
+
+INSERT INTO servico (nome, descricao, duracao, preco) 
+VALUES ('Massagem Relaxante', 'Massagem de relaxamento', 90, 120.00);

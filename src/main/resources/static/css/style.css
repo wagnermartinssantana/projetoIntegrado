@@ -1,0 +1,29 @@
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.custom-font {
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background-size: cover; /* Para ajustar o tamanho da imagem ao elemento */
+    background-repeat: no-repeat; /* Para evitar repetição da imagem de fundo */
+    background-attachment: fixed; /* Para manter a imagem fixa enquanto a página rola */
+    background-position: center; /* Para centralizar a imagem de fundo */
+}
+
+.half-screen {
+            min-height: 50vh;
+            background-image: url('https://protectionforbeauty.volkdobrasil.com.br/blog/wp-content/uploads/2019/01/confira-4-tendencias-para-salao-de-beleza.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+.navbar {
+	background-color: rgb(128, 128, 128); /* Cor de fundo da barra de navegação */
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff; /* Cor do texto dos links */
+}

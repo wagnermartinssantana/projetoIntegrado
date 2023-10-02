@@ -2,6 +2,9 @@ package br.com.projetointegrado.model.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import br.com.projetointegrado.model.enums.TipoTransacaoEnum;
 
 import java.util.Date;
@@ -11,6 +14,7 @@ public class TransacaoFinanceira {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = Access.READ_ONLY)
     private Long id;
 
     @Enumerated(EnumType.STRING)

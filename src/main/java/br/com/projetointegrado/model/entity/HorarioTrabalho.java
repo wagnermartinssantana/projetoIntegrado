@@ -1,6 +1,10 @@
 package br.com.projetointegrado.model.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import java.sql.Time;
 
 
@@ -9,6 +13,7 @@ public class HorarioTrabalho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = Access.READ_ONLY)
     private int id;
 
     @ManyToOne
