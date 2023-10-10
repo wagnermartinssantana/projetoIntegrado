@@ -5,13 +5,16 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Agendamento {
+public class Agendamento implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 5331002443296534261L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = Access.READ_ONLY)
     private Long id;
@@ -29,17 +32,6 @@ public class Agendamento {
     private Date data;
 
     private String horario;
-
-    public Agendamento() {
-    }
-
-    public Agendamento(Cliente cliente, List<Funcionario> funcionarios, List<Servico> servicos, Date data, String horario) {
-        this.cliente = cliente;
-        this.funcionarios = funcionarios;
-        this.servicos = servicos;
-        this.data = data;
-        this.horario = horario;
-    }
 
     public Long getId() {
         return id;
@@ -88,4 +80,19 @@ public class Agendamento {
     public void setHorario(String horario) {
         this.horario = horario;
     }
+    
+    public Agendamento() {
+    }
+
+	public Agendamento(Long id, Cliente cliente, List<Funcionario> funcionarios, List<Servico> servicos, Date data,
+			String horario) {
+		super();
+		this.id = id;
+		this.cliente = cliente;
+		this.funcionarios = funcionarios;
+		this.servicos = servicos;
+		this.data = data;
+		this.horario = horario;
+	}
+    
 }

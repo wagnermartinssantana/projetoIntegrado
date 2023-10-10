@@ -1,14 +1,18 @@
 package br.com.projetointegrado.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-public class Funcionario {
+public class Funcionario implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 8043700378501544206L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = Access.READ_ONLY)
     private Long id;
@@ -141,4 +145,24 @@ public class Funcionario {
         this.salario = salario;
     }
 
+	public Funcionario() {
+	}
+    
+	public Funcionario(Long id, String nome, String telefone, String email, String rua, int numero, String complemento,
+			String bairro, String cidade, String estado, String pais, String cargo, double salario) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.pais = pais;
+		this.cargo = cargo;
+		this.salario = salario;
+	}
 }

@@ -5,16 +5,18 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import java.io.Serializable;
 import java.sql.Time;
 
-
 @Entity
-public class HorarioTrabalho {
+public class HorarioTrabalho implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 5750704989312217872L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = Access.READ_ONLY)
-    private int id;
+    private Long id;
 
     @ManyToOne
     private Funcionario funcionario;
@@ -25,23 +27,11 @@ public class HorarioTrabalho {
     
     private Time horarioFim;
 
-    public HorarioTrabalho() {
-  	}
-    
-    public HorarioTrabalho(int id, Funcionario funcionario, String diaSemana, Time horarioInicio, Time horarioFim) {
-		super();
-		this.id = id;
-		this.funcionario = funcionario;
-		this.diaSemana = diaSemana;
-		this.horarioInicio = horarioInicio;
-		this.horarioFim = horarioFim;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,4 +67,15 @@ public class HorarioTrabalho {
 		this.horarioFim = horarioFim;
 	}
 
+    public HorarioTrabalho() {
+  	}
+    
+    public HorarioTrabalho(Long id, Funcionario funcionario, String diaSemana, Time horarioInicio, Time horarioFim) {
+		super();
+		this.id = id;
+		this.funcionario = funcionario;
+		this.diaSemana = diaSemana;
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
+	}
 }

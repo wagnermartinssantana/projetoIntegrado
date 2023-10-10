@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Inicial - Gestão Glamour</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:history.go(-1)">EVENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:history.go(-1)">CONTATO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:history.go(-1)">SERVIÇOS</a>
+                    </li>
+                    <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/historico-servicos}">HISTÓRICO FINANCEIRO</a>
+	                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">SAIR</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+	<div class="container py-5">
+    	<h2 class="text-center mt-5 mb-5">Histórico de Transações Financeiras</h2>
+    	<table class="table">
+	        <thead>
+	            <tr>
+	                <th>ID</th>
+	                <th>Tipo</th>
+	                <th>Data</th>
+	                <th>Valor</th>
+	            </tr>
+	        </thead>
+	        <tbody id="transacoes-body">
+	            <!-- As transações financeiras serão preenchidas aqui dinamicamente com JavaScript -->
+	        </tbody>
+	    </table>
+	</div>
+	<footer class="fixed-bottom bg-secondary text-white text-center">
+	        Desenvolvido por Wagner Martins
+	</footer>
+
+	<script>
+	    function carregarTransacoes() {
+	    fetch('/transacoes-financeiras/listar-todas') // Este é o endpoint que lista as transações financeiras
+	        .then(response => response.json())
+	        .then(data => {
+	            const transacoesBody = document.getElementById('transacoes-body');
+	
+	            // Limpa qualquer conteúdo existente na tabela
+	            transacoesBody.innerHTML = '';
+	
+	            // Itera pelas transações financeiras e adiciona cada uma como uma linha na tabela
+	            data.forEach(transacao => {
+	                const row = document.createElement('tr');
+	
+	                const idCell = document.createElement('td');
+	                idCell.textContent = transacao.id;
+	
+	                const tipoCell = document.createElement('td');
+	                tipoCell.textContent = transacao.tipo;
+	
+	                const dataCell = document.createElement('td');
+	                dataCell.textContent = formatarData(transacao.data);
+	
+	                const valorCell = document.createElement('td');
+	                valorCell.textContent = transacao.valor;
+	
+	                row.appendChild(idCell);
+	                row.appendChild(tipoCell);
+	                row.appendChild(dataCell);
+	                row.appendChild(valorCell);
+	
+	                transacoesBody.appendChild(row);
+	            });
+	        })
+	        .catch(error => {
+	            console.error('Erro ao buscar a lista de transações financeiras:', error);
+	        });
+		}
+		
+		function formatarData(data) {
+		    const dataObj = new Date(data);
+		    
+		    const dataFormatada = `${dataObj.toLocaleDateString()} ${dataObj.toLocaleTimeString()}`;
+		    
+		    return dataFormatada;
+		}
+		
+		document.addEventListener("DOMContentLoaded", function() {
+		    carregarTransacoes();
+		});
+	</script>
+</body>
+</html>

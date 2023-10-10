@@ -8,10 +8,10 @@
     font-family: 'Roboto', sans-serif;
 }
 body {
-    background-size: cover; /* Para ajustar o tamanho da imagem ao elemento */
-    background-repeat: no-repeat; /* Para evitar repetição da imagem de fundo */
-    background-attachment: fixed; /* Para manter a imagem fixa enquanto a página rola */
-    background-position: center; /* Para centralizar a imagem de fundo */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .half-screen {
@@ -22,8 +22,9 @@ body {
         }
         
 .navbar {
-	background-color: rgb(128, 128, 128); /* Cor de fundo da barra de navegação */
+	background-color: rgb(128, 128, 128);
+	scroll-behavior: smooth;
 }
 .navbar-dark .navbar-nav .nav-link {
-    color: #ffffff; /* Cor do texto dos links */
+    color: #ffffff;
 }

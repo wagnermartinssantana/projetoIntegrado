@@ -1,0 +1,35 @@
+@startuml Diagrama de Contexto
+
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/UML-Sprites/master/sprites
+!define DATABASEURL https://raw.githubusercontent.com/rabelenda/UML-Sprites/master/sprites/databases
+!define CONTROLLERURL https://raw.githubusercontent.com/rabelenda/UML-Sprites/master/sprites/controllers
+
+!define SPRITES +!$SPRITESURL/
+!define DATABASE +!$DATABASEURL/
+!define CONTROLLER +!$CONTROLLERURL/
+
+actor User as Cliente
+actor Admin as Administrador
+
+rectangle "Sistema de Gestão para Salões de Beleza" {
+  Cliente -- (Gestão Glammour)
+  Administrador -- (Gestão Glammour)
+  (Gestão Glammour) --> [Java, Spring Boot, Thymeleaf]
+  database "Banco de Dados" {
+    folder "Tabelas" {
+      [tb_agendamento]
+      [tb_avaliacao]
+      [tb_cliente]
+      [tb_funcionario]
+      [tb_horarioTrabalho]
+      [tb_promocao]
+      [tb_servico]
+      [tb_transacao_financeira]
+    }
+    folder "Conexão" {
+      [Conexão com Banco de Dados]
+    }
+  }
+}
+
+@enduml

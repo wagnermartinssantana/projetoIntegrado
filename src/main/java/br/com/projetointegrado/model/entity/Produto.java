@@ -1,14 +1,18 @@
 package br.com.projetointegrado.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-public class Produto {
+public class Produto implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 8549063215843318139L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = Access.READ_ONLY)
     private Long id;
@@ -20,16 +24,6 @@ public class Produto {
     private double preco;
     
     private int quantidade;
-
-    public Produto() {
-    }
-
-    public Produto(String nome, String descricao, double preco, int quantidade) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.quantidade = quantidade;
-    }
 
     public Long getId() {
         return id;
@@ -70,5 +64,14 @@ public class Produto {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+    
+    public Produto() {
+    }
 
+    public Produto(String nome, String descricao, double preco, int quantidade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
 }

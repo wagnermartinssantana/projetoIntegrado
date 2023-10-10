@@ -1,31 +1,33 @@
-<!-- login-modal.html -->
 <div th:fragment="login-modal">
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-	    <div class="modal-dialog" role="document">
-	        <div class="modal-content login-container">
-	            <div class="modal-header">
-	                <h5 class="modal-title" id="loginModalLabel">Login - Gestão Glamour</h5>
-	                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-	                    <span aria-hidden="true">&times;</span>
-	                </button>
-	            </div>
-	            <div class="modal-body">
-	                <form>
-	                    <div class="form-group">
-	                        <label for="username">Email</label>
-	                        <input type="text" class="form-control" id="username" placeholder="Digite seu email">
-	                    </div>
-	                    <div class="form-group">
-	                        <label for="password">Senha</label>
-	                        <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
-	                    </div>
-	                </form>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-primary">LOGIN</button>
-	                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content login-container">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login - Gestão Glamour</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/login}" method="post" id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Email</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha">
+                        </div>
+                        <div th:if="${loginError}" class="alert alert-danger" role="alert" id="loginError">
+						    Credenciais inválidas. Por favor, tente novamente.
+						</div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('loginForm').submit();">LOGIN</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
