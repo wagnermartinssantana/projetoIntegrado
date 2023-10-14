@@ -31,6 +31,16 @@ public class HomeController {
         }
     }
     
+    @GetMapping("/cliente")
+    public String cliente() {
+    	return "/cliente";
+    }
+    
+    @GetMapping("/admin")
+    public String admin() {
+    	return "/admin";
+    }
+    
     @GetMapping("/historico")
     public String historico() {
     	return "/historico-cliente";
@@ -39,6 +49,16 @@ public class HomeController {
     @GetMapping("/historico-servicos")
     public String historicoServicos() {
     	return "/historico-admin";
+    }
+    
+    @GetMapping("/avaliacao")
+    public String avaliacao() {
+    	return "/avaliacao";
+    }
+    
+    @GetMapping("/agendar")
+    public String agendar() {
+    	return "/agendar";
     }
     
 }

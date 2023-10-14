@@ -15,16 +15,75 @@ body {
 }
 
 .half-screen {
-            min-height: 50vh;
-            background-image: url('https://protectionforbeauty.volkdobrasil.com.br/blog/wp-content/uploads/2019/01/confira-4-tendencias-para-salao-de-beleza.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
-        
+    min-height: 50vh;
+    background-image: url('../imagens/principal.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+      
 .navbar {
 	background-color: rgb(128, 128, 128);
 	scroll-behavior: smooth;
 }
 .navbar-dark .navbar-nav .nav-link {
     color: #ffffff;
+}
+.card-img-top {
+        max-width: 100%;
+        height: auto;
+}
+
+.screen {
+    min-height: 100vh;
+    background-image: url('../imagens/principal.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.content-overlay {
+    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo com opacidade */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Espaçamento interno para o conteúdo */
+}
+
+/* Estilo para o conteúdo sobreposto (por exemplo, título) */
+.content-overlay h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Estilo para o formulário de agendamento */
+#agendamentoForm {
+    background-color: #fff; /* Cor de fundo do formulário */
+    padding: 20px; /* Espaçamento interno para o formulário */
+    border-radius: 8px; /* Borda arredondada para o formulário */
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 30px;
+    padding: 0.1em;
+    cursor: pointer;
+}
+
+.star-rating label:before {
+    content: "\2605"; /* Código Unicode para uma estrela preenchida */
+}
+
+.star-rating input[type="radio"]:checked + label:before {
+    content: "\2605"; /* Código Unicode para uma estrela preenchida quando selecionada */
+    color: #f8ce0b; /* Cor da estrela preenchida */
 }

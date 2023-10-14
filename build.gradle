@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
 	implementation 'javax.persistence:javax.persistence-api:2.2'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'com.itextpdf:itextpdf:5.5.13.2'
 	
 	runtimeOnly 'org.postgresql:postgresql'
 

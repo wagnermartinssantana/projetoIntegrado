@@ -1,12 +1,23 @@
 package br.com.projetointegrado.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.projetointegrado.model.entity.TransacaoFinanceira;
 import br.com.projetointegrado.model.service.TransacaoFinanceiraService;
+import br.com.projetointegrado.util.PdfGenerator;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.itextpdf.text.DocumentException;
+
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -64,4 +75,26 @@ public class TransacaoFinanceiraController {
         TransacaoFinanceira novaTransacao = transacaoFinanceiraService.registrarTransacao(transacao);
         return ResponseEntity.status(201).body(novaTransacao);
     }
+    
+    @GetMapping("gerar-pdf")
+    @Operation(summary = "Exporta para PDF a transação financeira")
+    public ResponseEntity<Resource> gerarRelatorioRetornoPdf() throws DocumentException {
+
+        List<TransacaoFinanceira> transacoes = transacaoFinanceiraService.listarTodasTransacoes();
+
+        PdfGenerator generator = new PdfGenerator();
+        byte[] pdfBytes = generator.generatePdf(transacoes);
+
+        ByteArrayResource resource = new ByteArrayResource(pdfBytes);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=relatorio.pdf");
+
+        return ResponseEntity.ok()
+            .headers(headers)
+            .contentLength(pdfBytes.length)
+            .contentType(MediaType.APPLICATION_PDF)
+            .body(resource);
+    }
+    
 }

@@ -60,7 +60,7 @@ public class AvaliacaoController {
         @ApiResponse(responseCode = "500", description = "Erro ao registrar avaliação"),
     })
     @PostMapping("/registrar")
-    public ResponseEntity<Avaliacao> registrarAvaliacao(@RequestBody Avaliacao avaliacao) {
+    public ResponseEntity<Avaliacao> registrarAvaliacao(@RequestBody Avaliacao avaliacao) throws Exception {
         Avaliacao novaAvaliacao = avaliacaoService.adicionarAvaliacao(avaliacao);
         return ResponseEntity.status(201).body(novaAvaliacao);
     }

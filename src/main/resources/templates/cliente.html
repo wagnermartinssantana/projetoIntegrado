@@ -18,14 +18,26 @@
 	        </button>
 	        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 	            <ul class="navbar-nav">
+					<li class="nav-item">
+                        <a class="nav-link" href="#evento">EVENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">CONTATO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servico">SERVIÇOS</a>
+                    </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="#agendar">AGENDAR</a>
+	                	<a class="nav-link" th:href="@{/agendar}">AGENDAR</a>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link" th:href="@{/historico}">HISTÓRICO</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="/" data-toggle="modal" data-target="#loginModal">SAIR</a>
+	                    <a class="nav-link" th:href="@{/avaliacao}">AVALIACAO</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/">SAIR</a>
 	                </li>
 	            </ul>
 	        </div>
@@ -39,47 +51,132 @@
         </div>
     </div>
 
-<div class="container py-5" id="agendar">
-    <h2 class="text-center">Agendar Serviço</h2>
-    <form id="agendamentoForm">
-        <div class="form-group">
-            <label for="servico">Escolha o Serviço</label>
-            <select class="form-control" id="servico" name="servico">
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="data">Data do Agendamento</label>
-            <input type="date" class="form-control" id="data" name="data">
-        </div>
-        <div class="form-group">
-            <label for="horario">Horário</label>
-            <input type="time" class="form-control" id="horario" name="horario">
-        </div>
-        <button type="submit" class="btn btn-success">Agendar</button>
-    </form>
-</div>
+   <div class="container py-5" id="evento">
+	    <h2 class="text-center">Eventos</h2>
+	    <div class="row mt-5">
+	        <!-- Card de evento 1 -->
+	        <div class="col-md-4">
+	            <div class="card mb-4">
+	                <img src="imagens/evento2.jpeg" class="card-img-top" alt="Finanças">
+	                <div class="card-body">
+	                    <h5 class="card-title">Finanças 11/11/2023</h5>
+	                    <p class="card-text">Este evento é uma oportunidade imperdível para proprietários e gerentes de salões de beleza que desejam aprimorar suas habilidades financeiras. Abordaremos tópicos essenciais, desde o gerenciamento de despesas até estratégias para aumentar a lucratividade. Aprenda a equilibrar seu orçamento, otimizar seus investimentos e criar um plano financeiro sólido para o seu salão. Este evento ajudará você a transformar sua paixão pela beleza em um negócio financeiramente saudável e bem-sucedido. Junte-se a nós e descubra como alcançar o sucesso financeiro no mundo dos salões de beleza.</p>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- Card de evento 2 -->
+	        <div class="col-md-4">
+	            <div class "card mb-4">
+	                <img src="imagens/evento1.jpeg" class="card-img-top" alt="Mechas">
+	                <div class="card-body">
+	                    <h5 class="card-title">Mechas 03/12/2023</h5>
+	                    <p class="card-text">Este evento é dedicado aos artistas capilares que desejam aprimorar suas habilidades em mechas e oferecer o que há de mais moderno e elegante para seus clientes. Vamos explorar as tendências mais recentes em coloração de cabelo, técnicas avançadas de mechas e segredos para criar visuais deslumbrantes. Com demonstrações práticas, dicas de coloração e informações sobre produtos de alta qualidade, você sairá deste evento pronto para criar mechas incríveis e se destacar no mundo da beleza. Junte-se a nós e descubra como elevar suas habilidades em coloração para o próximo nível.</p>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- Card de evento 3 -->
+	        <div class="col-md-4">
+	            <div class="card mb-4">
+	                <img src="imagens/evento4.jpg" class="card-img-top" alt="Organização">
+	                <div class="card-body">
+	                    <h5 class="card-title">Organização 26/01/2024</h5>
+	                    <p class="card-text">Este evento é ideal para proprietários e gerentes de salões de beleza que desejam otimizar a organização e a eficiência de seus negócios. Aprenda a criar um ambiente de trabalho mais organizado e produtivo, desde a disposição do salão até a gestão de horários e recursos. Vamos abordar tópicos como agendamento de clientes, estoque de produtos, gerenciamento de equipe e muito mais.</p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="container py-5" id="servico">
+	    <h2 class="text-center">Nossos Serviços</h2>
+	    <div class="row mt-5">
+	        <ul id="servicos-list"></ul>
+	    </div>
+	</div>
 
-<script>
-    function carregarServicos() {
+    <div class="container py-5" id="contato">
+        <h2 class="text-center">Contato</h2>
+        <div class="mt-5 row">
+            <!-- Card de Instagram -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+						<a href="https://www.linkedin.com/in/wagner-martins-santana/" target="_blank" style="color: black;">
+	                        <i class="fab fa-instagram fa-4x mb-3"></i>
+	                        <h5 class="card-title">Instagram</h5>
+	                        <p class="card-text">Siga-nos no Instagram para as últimas atualizações e tendências.</p>
+                    	</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card de Twitter -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+						<a href="https://www.linkedin.com/in/wagner-martins-santana/" target="_blank" style="color: black;">
+	                        <i class="fab fa-twitter fa-4x mb-3"></i>
+	                        <h5 class="card-title">Twitter</h5>
+	                        <p class="card-text">Siga-nos no Twitter para notícias e novidades em tempo real.</p>
+                    	</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card de WhatsApp -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+						<a href="https://www.linkedin.com/in/wagner-martins-santana/" target="_blank" style="color: black;">
+	                        <i class="fab fa-whatsapp fa-4x mb-3"></i>
+	                        <h5 class="card-title">WhatsApp</h5>
+	                        <p class="card-text">Entre em contato conosco pelo WhatsApp para perguntas e suporte.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card de Email -->
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+						<a href="https://www.linkedin.com/in/wagner-martins-santana/" target="_blank" style="color: black;">
+	                        <i class="far fa-envelope fa-4x mb-3"></i>
+	                        <h5 class="card-title">Email</h5>
+	                        <p class="card-text">Envie-nos um email para qualquer consulta ou informação adicional.</p>
+                    	</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div th:include="login-modal :: login-modal"></div>
+    
+    <footer class="fixed-bottom bg-secondary text-white text-center">
+        Desenvolvido por Wagner Martins
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
         fetch('/servicos')
             .then(response => response.json())
             .then(data => {
-                const servicoSelect = document.getElementById('servico');
-
-                servicoSelect.innerHTML = '';
+                const servicosList = document.getElementById('servicos-list');
 
                 data.forEach(servico => {
-                    const option = document.createElement('option');
-                    option.value = servico.id; 
-                    option.textContent = `${servico.nome} - ${servico.descricao} - Valor: ${servico.preco} reais`;
-                    servicoSelect.appendChild(option);
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${servico.nome} - ${servico.descricao} - ${servico.preco}R$`;
+                    servicosList.appendChild(listItem);
                 });
             })
             .catch(error => {
                 console.error('Erro ao buscar a lista de serviços:', error);
             });
-    }
-    window.addEventListener('load', carregarServicos);
-    </script>
+
+	document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("loginError")) {
+            $('#loginModal').modal('show');
+        }
+    });
+	</script>
 </body>
 </html>

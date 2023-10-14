@@ -2,9 +2,6 @@ package br.com.projetointegrado.model.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +12,6 @@ public class Avaliacao implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(access = Access.READ_ONLY)
     private Long id;
 
     @ManyToOne
@@ -29,7 +25,7 @@ public class Avaliacao implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String comentario;
 
-    private Date dataAtendimento;
+    private Date dataAvaliacao;
 
     public Long getId() {
         return id;
@@ -71,25 +67,25 @@ public class Avaliacao implements Serializable {
         this.comentario = comentario;
     }
 
-    public Date getDataAtendimento() {
-        return dataAtendimento;
+    public Date getDataAvaliacao() {
+        return dataAvaliacao;
     }
 
-    public void setDataAtendimento(Date dataAtendimento) {
-        this.dataAtendimento = dataAtendimento;
+    public void setDataAvalicao(Date dataAvaliacao) {
+        this.dataAvaliacao = dataAvaliacao;
     }
 
 	public Avaliacao() {
 	}
     
-	public Avaliacao(Long id, Cliente cliente, Servico servico, int estrelas, String comentario, Date dataAtendimento) {
+	public Avaliacao(Long id, Cliente cliente, Servico servico, int estrelas, String comentario, Date dataAvaliacao) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
 		this.servico = servico;
 		this.estrelas = estrelas;
 		this.comentario = comentario;
-		this.dataAtendimento = dataAtendimento;
+		this.dataAvaliacao = dataAvaliacao;
 	}
-	
+
 }

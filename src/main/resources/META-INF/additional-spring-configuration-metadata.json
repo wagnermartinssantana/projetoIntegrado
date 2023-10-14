@@ -8,5 +8,10 @@
     "name": "spring.hikari.maximumPoolSize",
     "type": "java.lang.String",
     "description": "A description for 'spring.hikari.maximumPoolSize'"
+  },
+  {
+    "name": "imagem.caminho",
+    "type": "java.lang.String",
+    "description": "A description for 'imagem.caminho'"
   }
 ]}

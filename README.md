@@ -33,6 +33,10 @@ Para o desenvolvimento da aplicação, foram utilizadas às tecnologias e libs a
 - Esta sendo utilizado banco postgre caso desejar mudar é bem tranquilo só mudar as config url, username, password e deixa o JPA fazer as tabelas.
 - Deixei um arquivo (sql.txt) para ajudar a colocar alguns dados em sua base. Ou se desejar tenho um banco com dados de teste (https://drive.google.com/file/d/1b3jJrmESpAnxZjgJaInZiC2yXxfJtsrP/view?usp=drive_link) ai seria somente importar no postgresql. Porem lembrando esse banco foi utilizado para testes...
 
+## Usuarios de teste
+- email: cliente@gmail.com senha: 123456
+- email: admin@gmail.com senha: 123456
+
 ## Contato
 - Surgiu alguma dúvida ou quer dar um sugestão segue meu contato:
 Email: wagnermartinssantana@gmail.com
