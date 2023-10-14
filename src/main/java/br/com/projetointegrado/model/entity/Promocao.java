@@ -2,14 +2,21 @@ package br.com.projetointegrado.model.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Promocao {
+public class Promocao implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = -8565008184133906797L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @JsonProperty(access = Access.READ_ONLY)
+    private Long id;
 
     @ManyToOne
     private Servico servico;
@@ -24,24 +31,11 @@ public class Promocao {
     
     private double desconto;
     
-    public Promocao() {
- 	}  
-
-    public Promocao(int id, Servico servico, Date dataInicio, Date dataFim, String descricao, double desconto) {
-		super();
-		this.id = id;
-		this.servico = servico;
-		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
-		this.descricao = descricao;
-		this.desconto = desconto;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -83,6 +77,19 @@ public class Promocao {
 
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
+	}
+
+    public Promocao() {
+ 	}  
+
+    public Promocao(Long id, Servico servico, Date dataInicio, Date dataFim, String descricao, double desconto) {
+		super();
+		this.id = id;
+		this.servico = servico;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.descricao = descricao;
+		this.desconto = desconto;
 	}
 
 }

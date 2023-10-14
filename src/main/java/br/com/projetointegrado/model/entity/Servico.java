@@ -1,14 +1,21 @@
 package br.com.projetointegrado.model.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Servico {
+public class Servico implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = -4664978181479379914L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty(access = Access.READ_ONLY)
     private Long id;
 
     private String nome;
@@ -21,17 +28,6 @@ public class Servico {
 
     @ManyToMany
     private List<Produto> produtos;
-
-    public Servico() {
-    }
-
-    public Servico(String nome, String descricao, int duracao, double preco) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.duracao = duracao;
-        this.preco = preco;
-        this.produtos = new ArrayList<>();
-    }
 
     public Long getId() {
         return id;
@@ -81,4 +77,16 @@ public class Servico {
         this.produtos = produtos;
     }
     
+    public Servico() {
+    }
+
+	public Servico(Long id, String nome, String descricao, int duracao, double preco, List<Produto> produtos) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.duracao = duracao;
+		this.preco = preco;
+		this.produtos = produtos;
+	}
 }

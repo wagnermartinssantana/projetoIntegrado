@@ -1,0 +1,78 @@
+--Serviço
+INSERT INTO Servico (descricao, preco, duracao) VALUES
+('Corte de Cabelo', 50.0, 30),
+('Massagem Relaxante', 80.0, 60),
+('Tratamento Facial', 120.0, 45);
+
+- Funcionario
+INSERT INTO Funcionario (nome, telefone, email, rua, numero, complemento, bairro, cidade, estado, pais, cargo, salario) VALUES
+('Lucas Rodrigues', '(11) 1234-5678', 'lucas@email.com', 'Rua A', 123, 'Ap. 45', 'Centro', 'São Paulo', 'SP', 'Brasil', 'Cabeleireiro', 2500.0),
+('Fernanda Almeida', '(21) 9876-5432', 'fernanda@email.com', 'Avenida B', 456, 'Loja 12', 'Copacabana', 'Rio de Janeiro', 'RJ', 'Brasil', 'Esteticista', 2800.0),
+('Roberto Lima', '(31) 8765-4321', 'roberto@email.com', 'Rua C', 789, 'Sala 3', 'Barro Preto', 'Belo Horizonte', 'MG', 'Brasil', 'Massoterapeuta', 2700.0);
+
+--Agendamento 
+INSERT INTO Agendamento (cliente_id, data, horario) VALUES
+(1, '2023-08-15', '10:00'),
+(2, '2023-08-16', '15:30'),
+(3, '2023-08-17', '14:15');
+
+-chave agendamento_funcionarios
+INSERT INTO agendamento_funcionarios (agendamento_id, funcionarios_id) VALUES
+(1, 1),
+(2, 2), 
+(3, 3);
+
+-chave agendamento_servicos
+INSERT INTO agendamento_servicos (agendamento_id, servicos_id) VALUES
+(1, 1), 
+(2, 2),
+(3, 3);
+
+--Produto
+INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES
+('Shampoo', 'Shampoo suave para todos os tipos de cabelo', 15.99, 100),
+('Condicionador', 'Condicionador hidratante para cabelos secos', 12.49, 80),
+('Esmalte', 'Esmalte de longa duração em várias cores', 7.99, 150),
+('Creme Facial', 'Creme facial anti-envelhecimento', 29.99, 60),
+('Loção Corporal', 'Loção corporal hidratante com fragrância suave', 18.99, 120);
+
+-chave Servico_Produto 
+INSERT INTO Servico_Produto (servico_id, produto_id) VALUES
+(1, 1), (1, 2), (1, 3);
+INSERT INTO Servico_Produto (servico_id, produto_id) VALUES
+(2, 1);
+INSERT INTO Servico_Produto (servico_id, produto_id) VALUES
+(3, 3);
+
+--TransacaoFinanceira 
+INSERT INTO TransacaoFinanceira (tipo, valor, data) VALUES
+('RECEITA', 100.0, '2023-09-10'),
+('DESPESA', 50.0, '2023-09-15'),
+('RECEITA', 200.0, '2023-09-20'),
+('DESPESA', 75.0, '2023-09-25');
+
+--Avaliações
+INSERT INTO Avaliacao (cliente_id, servico_id) VALUES
+(1, 1),
+(2, 3),
+(3, 2),
+(4, 4);
+
+-- Cliente
+INSERT INTO Cliente (nome, telefone, email) VALUES
+('Ana Silva', '9755-1234', 'ana.silva@email.com'),
+('Carlos Santos', '9875-5678', 'carlos.santos@email.com'),
+('Maria Ferreira', '8355-9876', 'maria.ferreira@email.com'),
+('José Oliveira', '7545-4321', 'jose.oliveira@email.com');
+
+--promoção
+INSERT INTO Promocao (servico_id, data_inicio, data_fim, descricao, desconto) VALUES
+(1, '2023-08-01', '2023-08-15', 'Promoção de Verão', 10.00),
+(2, '2023-09-01', '2023-09-15', 'Promoção de Outono', 15.00),
+(3, '2023-10-01', '2023-10-15', 'Promoção de Inverno', 20.00);
+
+horario_trabalho
+--INSERT INTO horario_trabalho (id, dia_semana, horario_fim , horario_inicio, funcionario_id) VALUES
+(1, 'Segunda-feira', '17:00:00', '17:00:00', 1);
+(2, 'Terça-feira', '17:00:00', '17:00:00', 1);
+(3, 'Quarta-feira', '17:00:00', '17:00:00', 1);

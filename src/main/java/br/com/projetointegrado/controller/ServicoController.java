@@ -12,9 +12,11 @@ import br.com.projetointegrado.model.service.ServicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/servicos")
+@Tag(name = "Servicos", description = "Endpoints da API do Projeto Integrado para os Serviços")
 public class ServicoController {
 
 	@Autowired
@@ -34,7 +36,7 @@ public class ServicoController {
         List<Servico> servicos = servicoService.listarServicos();
         return ResponseEntity.ok(servicos);
     }
-
+    
     @Operation(summary = "Obtém um serviço por ID", method = "GET")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Serviço obtido com sucesso"),

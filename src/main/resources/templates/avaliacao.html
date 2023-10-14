@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Inicial - Gestão Glamour</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de Navegação -->
+	<nav class="navbar navbar-expand-lg navbar-dark">
+	    <div class="container">
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+	            <ul class="navbar-nav">
+					<li class="nav-item">
+                        <a class="nav-link" th:href="@{/cliente}">EVENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/cliente}">CONTATO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/cliente}">SERVIÇOS</a>
+                    </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/agendar}">AGENDAR</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/historico}">HISTÓRICO</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" th:href="@{/avaliacao}">AVALIACAO</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/" data-toggle="modal" data-target="#loginModal">SAIR</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+    
+<div class="screen" id="avaliacao">
+    <div class="content-overlay">
+        <h2 class="text-center">Avaliar Serviço</h2>
+        <form id="avaliacaoForm">
+            <div class="form-group">
+                <label for="servico">Escolha o Serviço</label>
+                <select class="form-control" id="servico" name="servico">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="estrelas">Classificação por Estrelas</label>
+                <div class="star-rating">
+                    <input type="radio" id="estrela5" name="estrelas" value="1" /><label for="estrela5"></label>
+                    <input type="radio" id="estrela4" name="estrelas" value="2" /><label for="estrela4"></label>
+                    <input type="radio" id="estrela3" name="estrelas" value="3" /><label for="estrela3"></label>
+                    <input type="radio" id="estrela2" name="estrelas" value="4" /><label for="estrela2"></label>
+                    <input type="radio" id="estrela1" name="estrelas" value="5" /><label for="estrela1"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comentario">Comentário</label>
+                <textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Enviar Avaliação</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function carregarServicos() {
+        fetch('/servicos')
+            .then(response => response.json())
+            .then(data => {
+                const servicoSelect = document.getElementById('servico');
+
+                servicoSelect.innerHTML = '';
+
+                data.forEach(servico => {
+                    const option = document.createElement('option');
+                    option.value = servico.id; 
+                    option.textContent = `${servico.nome} - ${servico.descricao} - Valor: ${servico.preco} reais`;
+                    servicoSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao buscar a lista de serviços:', error);
+            });
+    }
+    window.addEventListener('load', carregarServicos);
+    
+	document.getElementById('avaliacaoForm').addEventListener('submit', function (event) {
+	    event.preventDefault(); 
+	    
+	    const comentario = document.getElementById('comentario').value;
+	    const estrelasInput = document.querySelectorAll('input[name="estrelas"]');
+	    
+	    estrelasInput.forEach(input => {
+		    if (input.checked) {
+			        estrelasSelecionadas = input.value;
+			}
+		});
+		
+	    const avaliacaoData = {
+	        cliente: {
+	            nome: "cliente",
+	            telefone: "9757211455",
+	            email: "cliente@gmail.com"
+	        },
+	        servico: {
+	            nome: "string",
+	            descricao: "string",
+	            duracao: 0,
+	            preco: 0,
+	            produtos: [
+	                {
+	                    nome: "string",
+	                    descricao: "string",
+	                    preco: 0,
+	                    quantidade: 0
+	                }
+	            ]
+	        },
+	        estrelas: estrelasSelecionadas,
+	        comentario: comentario,
+	        dataAvaliacao: "2023-10-13T18:53:09.364Z"
+	    };
+	
+	    fetch('/avaliacoes/registrar', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json',
+	        },
+	        body: JSON.stringify(avaliacaoData),
+	    })
+	    .then(response => {
+	        if (response.status === 201) {
+	            console.log('Avaliação registrada com sucesso!');
+	        } else {
+	            console.error('Erro ao registrar a avaliação:', response.status);
+	        }
+	    })
+	    .catch(error => {
+	        console.error('Erro ao enviar a avaliação:', error);
+	    });
+	});
+    </script>
+</body>
+</html>
