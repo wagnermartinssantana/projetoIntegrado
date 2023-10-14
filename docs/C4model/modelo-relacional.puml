@@ -1,0 +1,115 @@
+@startuml Modelo_Relacional
+
+!define ENTITY entity
+
+entity Cliente {
+  + id: Long
+  nome: String
+  telefone: String
+  email: String
+  rua: String
+  numero: int
+  complemento: String
+  bairro: String
+  cidade: String
+  estado: String
+  pais: String
+}
+
+entity Funcionario {
+  + id: Long
+  nome: String
+  telefone: String
+  email: String
+  rua: String
+  numero: int
+  complemento: String
+  bairro: String
+  cidade: String
+  estado: String
+  pais: String
+  cargo: String
+  salario: double
+}
+
+entity Agendamento {
+  + id: Long
+  data: Date
+  horario: String
+}
+
+entity Servico {
+  + id: Long
+  nome: String
+  descricao: String
+  duracao: int
+  preco: double
+}
+
+entity Agendamento_Funcionarios {
+  + id: Long
+  id_agendamento: Agendamento
+  id_funcionario: Funcionario
+}
+
+entity Agendamento_Servicos {
+  + id: Long
+  id_agendamento: Agendamento
+  id_servico: Servico
+}
+
+entity Produto {
+  + id: Long
+  nome: String
+  descricao: String
+  preco: double
+  quantidade: int
+}
+
+entity TransacaoFinanceira {
+  + id: Long
+  tipo: TipoTransacaoEnum
+  valor: double
+  data: Date
+}
+
+entity Avaliacao {
+  + id: Long
+  estrelas: int
+  comentario: String
+  dataAtendimento: Date
+}
+
+entity HorarioTrabalho {
+  + id: Long
+  diaSemana: String
+  horarioInicio: Time
+  horarioFim: Time
+}
+
+entity Promocao {
+  + id: Long
+  descricao: String
+  desconto: double
+  dataInicio: Date
+  dataFim: Date
+}
+
+entity Servicos_Produto {
+  + id: Long
+  id_servico: Servico
+  id_produto: Produto
+}
+
+Cliente -- Agendamento: "1" - "N"
+Funcionario -- Agendamento_Funcionarios: "N" - "1"
+Agendamento_Funcionarios -- Agendamento: "N" - "1"
+Servico -- Agendamento_Servicos: "1" - "N"
+Agendamento_Servicos -- Agendamento: "N" - "1"
+Servico -- Servicos_Produto: "1" - "N"
+Produto -- Servicos_Produto: "1" - "N"
+Promocao -- Servico: "1" - "N"
+HorarioTrabalho -- Funcionario: "N" - "1"
+Avaliacao -- Servico: Promocao -- Servico: "1" - "N"
+
+@enduml
